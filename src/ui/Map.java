@@ -2,6 +2,8 @@ package ui;
 
 import backend.Coordinates;
 import blocks.*;
+import exceptions.BlockErrorException;
+
 import java.util.Random;
 
 public class Map {
@@ -92,14 +94,17 @@ public class Map {
         return get_block(coords);
     }
 
-    public SmeltableBlock get_smeltable_block_at(Coordinates coords) {
+    public SmeltableBlock get_smeltable_block_at(Coordinates coords) throws BlockErrorException {
         Block block = get_block_at(coords);
         if (!(block instanceof SmeltableBlock))
-            return null;
+            throw new BlockErrorException();
         return (SmeltableBlock) block;
     }
 
-    public boolean is_smeltable_block_at(Coordinates coords) {
-        return get_smeltable_block_at(coords) != null;
+    public Block get_pickable_block_at(Coordinates coords) throws BlockErrorException {
+        Block block = get_block_at(coords);
+        if (!block.is_pickable())
+            throw new BlockErrorException();
+        return block;
     }
 }

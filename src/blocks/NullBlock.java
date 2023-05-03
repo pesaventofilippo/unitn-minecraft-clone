@@ -5,6 +5,7 @@ public class NullBlock extends AbstractSolidBlock implements SmeltableBlock {
         super();
         this.blockName = "Null";
         this.contenuto = ' ';
+        this.pickable = false;
     }
 
     public Block smelt() {

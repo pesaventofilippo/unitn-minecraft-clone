@@ -25,4 +25,16 @@ public class Furnace {
     public void setInput(SmeltableBlock input) {
         this.input = input;
     }
+
+    public SmeltableBlock extractInput() {
+        SmeltableBlock input = this.input;
+        this.input = new NullBlock();
+        return input;
+    }
+
+    public Block extractOutput() {
+        Block output = this.output;
+        this.output = new NullBlock();
+        return output;
+    }
 }
